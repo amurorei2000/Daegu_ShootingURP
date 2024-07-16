@@ -51,6 +51,8 @@ public class PlayerMove : MonoBehaviour
 
         // p = p0 + vt 공식을 이용해서 플레이어의 위치를 이동시키기
         transform.position += direction * speed * Time.deltaTime;
+        //transform.localScale += direction * speed * Time.deltaTime;
+        //transform.eulerAngles += direction * speed * Time.deltaTime;
     }
 
     void MoveType2()
