@@ -24,6 +24,16 @@ public class EnemyMove : MonoBehaviour
         // 찾은 오브젝트가 있다면, 그 오브젝트를 target 변수에 넣는다.
         target = GameObject.Find("Player");
 
+        // 만일, 타겟 변수의 값이 null이라면
+        if (target == null)
+        {
+            // dir 변수의 방향을 아래로 설정한다.
+            dir = Vector3.down;
+
+            // start함수를 끝낸다.
+            return;
+        }
+
         // 1. 1 ~ 100 범위 안에서 랜덤하게 숫자 하나를 추첨한다.
         // 사용되지 않음(Deprecate) : 곧 사라질 운명
         //int number = Random.Range(1, 101);
@@ -52,5 +62,18 @@ public class EnemyMove : MonoBehaviour
 
         // 계산된 방향(dir)으로 이동한다.
         transform.position += dir * moveSpeed * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("DestroyZone"))
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

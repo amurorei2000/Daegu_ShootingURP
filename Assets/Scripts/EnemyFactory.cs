@@ -31,19 +31,19 @@ public class EnemyFactory : MonoBehaviour
 
             // 30% 확률로 1번 프리팹, 20% 확률로 2번 프리팹, 50% 확률로 3번 프리팹이 생성되게 하고 싶다.
             float num = Random.Range(0.0f, 1.0f);
-            GameObject selectedObject;
-            if(num < 0.3f)
+            GameObject selectedObject = enemyPrefab1;
+            if(num <= 1.0f)
             {
                 selectedObject = enemyPrefab1;
             }
-            else if(num < 0.5f)
-            {
-                selectedObject = enemyPrefab2;
-            }
-            else
-            {
-                selectedObject = enemyPrefab3;
-            }
+            //else if(num < 0.5f)
+            //{
+            //    selectedObject = enemyPrefab2;
+            //}
+            //else
+            //{
+            //    selectedObject = enemyPrefab3;
+            //}
 
             GameObject go = Instantiate(selectedObject);
             go.transform.position = transform.position;
