@@ -45,6 +45,10 @@ public class EnemyMove : MonoBehaviour
             // 2-1. 플레이어가 있는 방향으로 dir 변수를 설정한다.
             dir = target.transform.position - transform.position;
             dir.Normalize();
+
+            // 2-2. 플레이어를 바라보는 방향으로 회전한다.
+            transform.up = dir * -1;
+            
         }
         // 3. 그렇지 않다면...
         else
