@@ -74,6 +74,19 @@ public class EnemyMove : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        // 만일 충돌한 대상이 플레이어라면...
+        else if(other.gameObject.name.Contains("Player"))
+        {
+            Destroy(other.gameObject);
+
+            // 최고 점수를 저장한다.
+            PlayerPrefs.SetInt("BestScore", GameManager.gm.GetBestScore());
+
+            // 게임 오버 UI 패널을 활성화한다.
+            GameManager.gm.ShowGameOverUI(true);
+
+            Destroy(gameObject);
+        }
         else
         {
             Destroy(other.gameObject);

@@ -55,6 +55,9 @@ public class BulletMove : MonoBehaviour
 
             // 상대방 오브젝트를 제거한다.
             Destroy(other.gameObject);
+
+            // 게임 매니저 클래스의 현재 점수를 1점 추가한다.
+            GameManager.gm.AddScore(1);
         }
         // 나를 제거한다.
         Destroy(gameObject);
