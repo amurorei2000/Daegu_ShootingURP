@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class GameManager : MonoBehaviour
     // 싱글턴 패턴으로 구현(Singletone)
     public static GameManager gm;
     //public GameObject scoreObject;
-    public Text scoreText;
+    public Text scoreText;  // Legacy 방식의 텍스트 컴포넌트
+    public TMP_Text scoreTextTmp;   // Text mesh pro 방식의 텍스트 컴포넌트
     public Text bestScoreText;
     public GameObject gameOverUI;
 
@@ -38,7 +40,8 @@ public class GameManager : MonoBehaviour
         //scoreText = scoreObject.GetComponent<Text>();
 
         // 현재 점수 텍스트의 값을 "0"으로 초기화한다.
-        scoreText.text = "0";
+        //scoreText.text = "0";
+        scoreTextTmp.text = "0";
 
         // 만일, "BestScore" 키로 저장된 데이터가 있다면...
         if (PlayerPrefs.HasKey("BestScore"))
@@ -60,7 +63,8 @@ public class GameManager : MonoBehaviour
         currentScore += point;
         //print(currentScore);
         // 현재 점수(숫자)를 문자열로 변경해서 UI의 scoreText에다가 전달한다.
-        scoreText.text = currentScore.ToString();
+        //scoreText.text = currentScore.ToString();
+        scoreTextTmp.text = currentScore.ToString();
 
         // 만일, 추가된 현재 점수가 기록중인 최고 점수보다 더 높다면
         if (currentScore > bestScore)
@@ -93,7 +97,7 @@ public class GameManager : MonoBehaviour
         //print("재시작 버튼이 클릭되었습니다!");
 
         // 현재 씬을 다시 시작(Load)한다.
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
         // 앱의 시간 흐름을 1배율로 변경한다.
         Time.timeScale = 1;
@@ -104,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
 #if UNITY_EDITOR
         // 유니티 에디터의 플레이 모드를 종료한다.
-        EditorApplication.ExitPlaymode();
+        //EditorApplication.ExitPlaymode();
 
 #elif UNITY_STANDALONE
         // 어플리케이션을 종료한다(유니티 에디터에서 플레이 중일 때에는 사용이 불가능)
